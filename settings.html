@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Clickkearn</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .settings-section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+    .settings-section-title { font-family: 'Orbitron', monospace; font-size: 0.88rem; font-weight: 700; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .danger-zone { border-color: rgba(255,71,87,0.2); }
+    .danger-zone .settings-section-title { color: var(--red); }
+    .avatar-wrap { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+    .avatar-circle { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--purple)); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', monospace; font-size: 1.6rem; font-weight: 800; color: #000; flex-shrink: 0; }
+    .avatar-info h3 { font-family: 'Orbitron', monospace; font-size: 0.95rem; }
+    .avatar-info p { font-size: 0.82rem; color: var(--text2); font-family: 'Share Tech Mono', monospace; margin-top: 2px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div id="cursor-glow"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div id="sidebar-overlay"></div>
+
+  <div class="ck-app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-text">CLICKKEARN</div>
+        <div class="logo-sub">// earn while you click</div>
+      </div>
+      <div class="sidebar-wallet">
+        <div class="wallet-label">My Wallet</div>
+        <div class="wallet-amount" id="nav-balance">$0.00</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item" data-nav="index.html"><span class="nav-icon">⚡</span> Dashboard</a>
+        <a href="tasks.html" class="nav-item" data-nav="tasks.html"><span class="nav-icon">📋</span> Tasks</a>
+        <a href="wallet.html" class="nav-item" data-nav="wallet.html"><span class="nav-icon">💰</span> Wallet</a>
+        <a href="settings.html" class="nav-item" data-nav="settings.html"><span class="nav-icon">⚙️</span> Settings</a>
+        <div style="height:1px;background:var(--border);margin:12px 16px;"></div>
+        <a href="about.html" class="nav-item" data-nav="about.html"><span class="nav-icon">ℹ️</span> About Us</a>
+        <a href="contact.html" class="nav-item" data-nav="contact.html"><span class="nav-icon">📬</span> Contact</a>
+        <a href="privacy.html" class="nav-item" data-nav="privacy.html"><span class="nav-icon">🔒</span> Privacy</a>
+        <a href="terms.html" class="nav-item" data-nav="terms.html"><span class="nav-icon">📄</span> Terms</a>
+        <div style="height:1px;background:var(--border);margin:12px 16px;"></div>
+        <a href="#" class="nav-item nav-signout" id="nav-signout"><span class="nav-icon">🚪</span> Sign Out</a>
+      </nav>
+      <div class="sidebar-footer">v1.0.0 &nbsp;·&nbsp; © 2025 Clickkearn</div>
+    </aside>
+
+    <main class="main-content">
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="menu-toggle" id="menu-toggle">☰</button>
+          <span class="topbar-title">Settings</span>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="settings-section" data-stagger>
+        <div class="settings-section-title">👤 Profile Information</div>
+        <div class="avatar-wrap">
+          <div class="avatar-circle" id="avatar-initial">U</div>
+          <div class="avatar-info">
+            <h3 id="avatar-name">Username</h3>
+            <p id="avatar-email">email@example.com</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <input class="form-input" type="text" id="s-username" placeholder="Username" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" id="s-email" placeholder="Email" />
+          </div>
+        </div>
+        <button class="btn btn-primary" id="save-profile-btn">💾 Save Changes</button>
+      </div>
+
+      <!-- APPEARANCE -->
+      <div class="settings-section" data-stagger>
+        <div class="settings-section-title">🎨 Appearance</div>
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label-text">Dark Mode</div>
+            <div style="font-size:0.8rem;color:var(--text2);margin-top:2px;">Toggle between dark and light interface theme</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="toggle-wrap">
+          <div>
+            <div class="toggle-label-text">Notification Sounds</div>
+            <div style="font-size:0.8rem;color:var(--text2);margin-top:2px;">Play sound on task completion</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="sound-toggle" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="settings-section" data-stagger>
+        <div class="settings-section-title">🔐 Security</div>
+        <div class="form-group">
+          <label class="form-label">New Password</label>
+          <input class="form-input" type="password" id="s-new-pw" placeholder="Leave blank to keep current" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm New Password</label>
+          <input class="form-input" type="password" id="s-confirm-pw" placeholder="Repeat new password" />
+        </div>
+        <button class="btn btn-outline" onclick="changePassword()">🔑 Update Password</button>
+      </div>
+
+      <!-- SIGN OUT -->
+      <div class="settings-section" data-stagger>
+        <div class="settings-section-title">🚪 Session</div>
+        <p style="font-size:0.9rem;color:var(--text2);margin-bottom:16px;">Sign out of your Clickkearn account. Your data and earnings will be saved.</p>
+        <button class="btn btn-outline" id="logout-btn">Sign Out</button>
+      </div>
+
+      <!-- DANGER ZONE -->
+      <div class="settings-section danger-zone" data-stagger>
+        <div class="settings-section-title">⚠️ Danger Zone</div>
+        <p style="font-size:0.9rem;color:var(--text2);margin-bottom:16px;">Permanently delete your account and all associated data. This action cannot be undone.</p>
+        <button class="btn btn-danger" id="delete-account-btn">🗑️ Delete Account</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    function changePassword() {
+      const np = document.getElementById('s-new-pw').value;
+      const cp = document.getElementById('s-confirm-pw').value;
+      if (!np) return showToast('Enter a new password.', 'error');
+      if (np !== cp) return showToast('Passwords do not match.', 'error');
+      if (np.length < 6) return showToast('Password must be 6+ characters.', 'error');
+      const u = getUser();
+      setUser({ ...u, password: np });
+      document.getElementById('s-new-pw').value = '';
+      document.getElementById('s-confirm-pw').value = '';
+      showToast('Password updated! 🔐');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const u = getUser();
+        if (!u) return;
+        const av = document.getElementById('avatar-initial');
+        const an = document.getElementById('avatar-name');
+        const ae = document.getElementById('avatar-email');
+        if (av) av.textContent = u.username.charAt(0).toUpperCase();
+        if (an) an.textContent = u.username;
+        if (ae) ae.textContent = u.email;
+      }, 100);
+    });
+  </script>
+</body>
+</html>
