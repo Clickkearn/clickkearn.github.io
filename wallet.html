@@ -1,0 +1,133 @@
+<!-- wallet.html — Clickkearn Wallet Page -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet — Clickkearn</title>
+
+  <!-- Required Ad Script -->
+  <script type='text/javascript' src='//pl26609295.effectivegatecpm.com/75/ed/ee/75eeee0c2b4f1db614c4f1a9a3a23f95.js'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body data-page="wallet">
+  <div id="toast-container" aria-live="polite"></div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">CLICK<span>KEARN</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="wallet.html" style="color:var(--accent);">Wallet</a>
+        <a href="settings.html">Settings</a>
+        <a href="about.html">About</a>
+      </div>
+      <div id="guest-nav" style="display:flex;gap:0.6rem;align-items:center;">
+        <a href="index.html" class="btn btn-secondary">Sign In</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:0.8rem;">
+        <span id="user-greeting"></span>
+        <span id="header-balance">$0.00</span>
+        <button class="btn btn-danger signout-btn" aria-label="Sign out">Sign Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-title">My Wallet</div>
+        <h1>Balance &amp; Transactions</h1>
+        <p>Track your earnings and submit withdrawal requests.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <!-- Balance Card -->
+      <div class="card" style="margin-bottom:2rem;text-align:center;padding:2.5rem;">
+        <p style="font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text2);margin-bottom:0.5rem;">Current Balance</p>
+        <div id="wallet-balance" class="wallet-balance-display">$0.00</div>
+        <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">Minimum withdrawal: $110.00</p>
+
+        <div style="margin-top:1.5rem;">
+          <button id="withdraw-btn" class="btn btn-primary btn-disabled" disabled aria-describedby="withdraw-msg" style="padding:0.75rem 2rem;font-size:0.85rem;">
+            Request Withdrawal
+          </button>
+          <p id="withdraw-msg" class="withdraw-msg" aria-live="polite"></p>
+          <p style="font-family:var(--font-mono);font-size:0.68rem;color:var(--text3);margin-top:0.6rem;">
+            ⚠️ Demo only — real payouts require secure backend &amp; payment processor
+          </p>
+        </div>
+      </div>
+
+      <!-- Progress to withdrawal -->
+      <div class="card" style="margin-bottom:2rem;">
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Progress to Withdrawal</h3>
+        <div style="background:var(--surface2);border-radius:100px;height:8px;overflow:hidden;border:1px solid var(--border);">
+          <div id="progress-bar" style="height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:100px;width:0%;transition:width 0.6s ease;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:0.5rem;">
+          <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text2);" id="progress-label">$0.00 / $110.00</span>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent);" id="progress-pct">0%</span>
+        </div>
+      </div>
+
+      <!-- Transactions -->
+      <div style="margin-bottom:2rem;">
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Transaction History</h3>
+        <div id="tx-list"></div>
+      </div>
+
+      <!-- Withdrawal History -->
+      <div>
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Withdrawal Requests</h3>
+        <div id="wd-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Clickkearn. Demo platform.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Augment wallet render to update progress bar
+    document.addEventListener('DOMContentLoaded', () => {
+      const origRender = window.renderWallet;
+      // Patch: update progress bar after wallet renders
+      const patchProgress = () => {
+        const balEl = document.getElementById('wallet-balance');
+        const bar   = document.getElementById('progress-bar');
+        const label = document.getElementById('progress-label');
+        const pct   = document.getElementById('progress-pct');
+        if (!balEl || !bar) return;
+        const bal = parseFloat(balEl.textContent.replace('$','')) || 0;
+        const ratio = Math.min(bal / 110, 1);
+        bar.style.width = (ratio * 100).toFixed(1) + '%';
+        if (label) label.textContent = `$${bal.toFixed(2)} / $110.00`;
+        if (pct)   pct.textContent   = `${(ratio * 100).toFixed(0)}%`;
+      };
+      // Run after a short delay to let main.js finish
+      setTimeout(patchProgress, 100);
+      // Also watch for DOM changes
+      const observer = new MutationObserver(patchProgress);
+      const balEl = document.getElementById('wallet-balance');
+      if (balEl) observer.observe(balEl, { childList: true });
+    });
+  </script>
+</body>
+</html>

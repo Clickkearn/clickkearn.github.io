@@ -1,0 +1,194 @@
+<!-- index.html — Clickkearn Landing Page -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clickkearn — Earn by Clicking</title>
+  <meta name="description" content="Clickkearn — click ad tasks and earn real rewards to your wallet." />
+
+  <!-- Required Ad Script -->
+  <script type='text/javascript' src='//pl26609295.effectivegatecpm.com/75/ed/ee/75eeee0c2b4f1db614c4f1a9a3a23f95.js'></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body data-page="landing">
+
+  <!-- ── Toast Container ── -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ── Header ── -->
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">CLICK<span>KEARN</span></a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="settings.html">Settings</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <!-- Guest nav -->
+      <div id="guest-nav" style="display:flex; gap:0.6rem; align-items:center;">
+        <!-- Tab buttons serve as primary login prompts on landing page -->
+      </div>
+
+      <!-- Authed nav -->
+      <div id="user-nav" style="display:none; align-items:center; gap:0.8rem;">
+        <span id="user-greeting"></span>
+        <span id="header-balance">$0.00</span>
+        <button class="btn btn-danger signout-btn" aria-label="Sign out">Sign Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── PUBLIC VIEW (not logged in) ── -->
+    <div id="landing-public">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-badge">Earn · Click · Withdraw</div>
+        <h1 id="hero-heading">Get Paid to<br />Click Ads</h1>
+        <p>Complete ad tasks, watch your wallet grow, and withdraw when you hit $110. Simple, fast, and transparent.</p>
+
+        <!-- Feature pills -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-bottom:2rem;">
+          <span style="font-family:var(--font-mono);font-size:0.75rem;padding:4px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text2);">$1.62 per task</span>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;padding:4px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text2);">3 clicks / task</span>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;padding:4px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text2);">Renews every 24h</span>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;padding:4px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text2);">Withdraw at $110</span>
+        </div>
+      </section>
+
+      <!-- Auth Forms -->
+      <div class="auth-container" role="region" aria-label="Authentication">
+        <div class="auth-tabs" role="tablist" aria-label="Sign in or sign up">
+          <button id="tab-signup" class="auth-tab tab-active" role="tab" aria-selected="true" aria-controls="form-signup">Create Account</button>
+          <button id="tab-signin" class="auth-tab" role="tab" aria-selected="false" aria-controls="form-signin">Sign In</button>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="form-signup" role="tabpanel" aria-labelledby="tab-signup">
+          <div class="card">
+            <p id="signup-error" class="form-error" aria-live="polite"></p>
+            <form id="signup-form" novalidate>
+              <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input id="signup-username" type="text" name="username" placeholder="e.g. cyberuser" autocomplete="username" required minlength="3" />
+              </div>
+              <div class="form-group">
+                <label for="signup-email">Email Address</label>
+                <input id="signup-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+              </div>
+              <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input id="signup-password" type="password" name="password" placeholder="Min 6 characters" autocomplete="new-password" required minlength="6" />
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Create Account →</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="form-signin" role="tabpanel" aria-labelledby="tab-signin" style="display:none;">
+          <div class="card">
+            <p id="signin-error" class="form-error" aria-live="polite"></p>
+            <form id="signin-form" novalidate>
+              <div class="form-group">
+                <label for="signin-id">Username or Email</label>
+                <input id="signin-id" type="text" name="login" placeholder="Username or email" autocomplete="username" required />
+              </div>
+              <div class="form-group">
+                <label for="signin-password">Password</label>
+                <input id="signin-password" type="password" name="password" placeholder="Your password" autocomplete="current-password" required />
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Sign In →</button>
+            </form>
+          </div>
+        </div>
+
+        <p style="text-align:center;margin-top:1rem;font-size:0.82rem;font-family:var(--font-mono);color:var(--text3);">
+          Demo only — no real money involved without backend
+        </p>
+      </div>
+
+      <!-- How it works -->
+      <section class="section" aria-labelledby="how-heading">
+        <div style="text-align:center;margin-bottom:2rem;">
+          <div class="section-title">How it works</div>
+          <h2 id="how-heading">Three steps to earning</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Pick a Task</h3>
+            <p>Browse available ad tasks. Each pays $1.62 on completion.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👆</div>
+            <h3>Click 3 Ads</h3>
+            <p>Click each of the 3 ad links in a task. Hold focus for 2 seconds.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <h3>Get Paid</h3>
+            <p>$1.62 is instantly credited to your wallet. Withdraw at $110.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Repeat Daily</h3>
+            <p>Tasks renew every 24 hours so you can earn again and again.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── AUTHED VIEW (logged in) ── -->
+    <div id="landing-authed" style="display:none;">
+      <section class="section" aria-labelledby="welcome-heading">
+        <div class="hero-glow" aria-hidden="true" style="top:-2rem;"></div>
+
+        <!-- Welcome header -->
+        <div style="margin-bottom:2rem;">
+          <div class="section-title">Dashboard</div>
+          <h2 id="welcome-heading">Welcome back, <span id="welcome-username" style="color:var(--accent);"></span></h2>
+          <p>Complete your daily tasks to grow your wallet balance.</p>
+        </div>
+
+        <!-- Tasks -->
+        <div>
+          <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Available Tasks</h3>
+          <div id="tasks-container" class="tasks-grid" aria-label="Task list"></div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Clickkearn. Demo platform — not a licensed financial product.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

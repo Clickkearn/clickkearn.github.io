@@ -1,0 +1,132 @@
+<!-- settings.html — Clickkearn Settings Page -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — Clickkearn</title>
+
+  <!-- Required Ad Script -->
+  <script type='text/javascript' src='//pl26609295.effectivegatecpm.com/75/ed/ee/75eeee0c2b4f1db614c4f1a9a3a23f95.js'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body data-page="settings">
+  <div id="toast-container" aria-live="polite"></div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">CLICK<span>KEARN</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="settings.html" style="color:var(--accent);">Settings</a>
+        <a href="about.html">About</a>
+      </div>
+      <div id="guest-nav" style="display:flex;gap:0.6rem;">
+        <a href="index.html" class="btn btn-secondary">Sign In</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:0.8rem;">
+        <span id="user-greeting"></span>
+        <span id="header-balance">$0.00</span>
+        <button class="btn btn-danger signout-btn" aria-label="Sign out">Sign Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-title">Preferences</div>
+        <h1>Settings</h1>
+        <p>Manage your account preferences and appearance.</p>
+      </div>
+    </section>
+
+    <section class="section" style="max-width:600px;">
+
+      <!-- Account Info -->
+      <div style="margin-bottom:2rem;">
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Account Information</h3>
+        <div class="settings-row">
+          <span style="font-family:var(--font-body);font-weight:600;">Username</span>
+          <span id="settings-username" style="font-family:var(--font-mono);font-size:0.85rem;color:var(--accent);">—</span>
+        </div>
+        <div class="settings-row">
+          <span style="font-family:var(--font-body);font-weight:600;">Email</span>
+          <span id="settings-email" style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text2);">—</span>
+        </div>
+      </div>
+
+      <!-- Appearance -->
+      <div style="margin-bottom:2rem;">
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Appearance</h3>
+        <div class="settings-row">
+          <div>
+            <span style="font-family:var(--font-body);font-weight:600;display:block;">Theme</span>
+            <span style="font-size:0.82rem;color:var(--text2);">Toggle between dark and light mode</span>
+          </div>
+          <div class="toggle-wrapper">
+            <label id="theme-label" style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text2);min-width:80px;text-align:right;">Dark Mode</label>
+            <label class="toggle-switch" aria-label="Toggle theme">
+              <input type="checkbox" id="theme-toggle" aria-label="Light mode toggle" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data -->
+      <div style="margin-bottom:2rem;">
+        <h3 style="font-family:var(--font-head);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);margin-bottom:1rem;">Data &amp; Privacy</h3>
+        <div class="settings-row" style="flex-direction:column;align-items:flex-start;gap:0.8rem;">
+          <div>
+            <span style="font-family:var(--font-body);font-weight:600;display:block;">Clear Demo Data</span>
+            <span style="font-size:0.82rem;color:var(--text2);">Removes all local data including account, wallet, and tasks. Cannot be undone.</span>
+          </div>
+          <button id="clear-data-btn" class="btn btn-danger">Clear All Data</button>
+        </div>
+      </div>
+
+      <div style="padding:1rem;background:rgba(0,212,255,0.04);border:1px solid var(--border);border-radius:var(--radius);">
+        <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text3);line-height:1.6;">
+          ⚠️ DEMO ONLY — All settings and data are stored locally in your browser via localStorage. 
+          No data is transmitted to any server. For production, account management requires a secure backend.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Clickkearn. Demo platform.</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const clearBtn = document.getElementById('clear-data-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (confirm('Clear all demo data? This cannot be undone.')) {
+            localStorage.clear();
+            window.location.href = 'index.html';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

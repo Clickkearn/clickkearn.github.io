@@ -1,0 +1,100 @@
+<!-- privacy.html — Clickkearn Privacy Policy -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Clickkearn</title>
+
+  <!-- Required Ad Script -->
+  <script type='text/javascript' src='//pl26609295.effectivegatecpm.com/75/ed/ee/75eeee0c2b4f1db614c4f1a9a3a23f95.js'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body data-page="privacy">
+  <div id="toast-container" aria-live="polite"></div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">CLICK<span>KEARN</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="settings.html">Settings</a>
+        <a href="about.html">About</a>
+      </div>
+      <div id="guest-nav" style="display:flex;gap:0.6rem;">
+        <a href="index.html" class="btn btn-secondary">Sign In</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:0.8rem;">
+        <span id="user-greeting"></span>
+        <span id="header-balance">$0.00</span>
+        <button class="btn btn-danger signout-btn">Sign Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-title">Legal</div>
+        <h1>Privacy Policy</h1>
+        <p>Last updated: January 2024</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="prose">
+        <h2>Overview</h2>
+        <p>Clickkearn is a demonstration platform. This privacy policy describes how user data is handled within this demo application.</p>
+
+        <h2>Data We Collect</h2>
+        <p>In this demo, the following data is stored exclusively in your browser's localStorage and is never transmitted to any server:</p>
+        <ul>
+          <li>Username and email address provided during signup</li>
+          <li>A hashed version of your password (demo hash only — not cryptographically secure)</li>
+          <li>Wallet balance and transaction history</li>
+          <li>Task completion state and timestamps</li>
+          <li>Theme preferences</li>
+        </ul>
+
+        <h2>How Data Is Used</h2>
+        <p>Data stored locally is used solely to operate the demo functionality — authentication, task tracking, and wallet simulation. No data is shared with third parties by this application.</p>
+
+        <h2>Third-Party Advertising</h2>
+        <p>This demo displays advertisements provided by third-party ad networks including Adsterra. Those networks may collect data according to their own privacy policies. By clicking ad links, you may be subject to the ad network's data collection practices.</p>
+
+        <h2>Cookies</h2>
+        <p>This demo application does not set cookies. The ad network scripts may set their own cookies; refer to the ad network's privacy policy for details.</p>
+
+        <h2>Data Deletion</h2>
+        <p>To delete all stored demo data, visit the Settings page and click "Clear All Data," or clear your browser's localStorage through browser settings (Developer Tools → Application → Local Storage).</p>
+
+        <h2>Production Deployment Warning</h2>
+        <p>If this demo is adapted for production use, the following must be implemented to comply with privacy regulations: server-side data storage with proper encryption, GDPR/CCPA compliance mechanisms, a real data deletion mechanism, and a formal privacy policy reviewed by legal counsel.</p>
+
+        <h2>Contact</h2>
+        <p>For questions about this demo, visit the <a href="contact.html">Contact page</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html" style="color:var(--accent);">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Clickkearn. Demo platform.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

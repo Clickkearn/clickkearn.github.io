@@ -1,0 +1,142 @@
+<!-- about.html — Clickkearn About Page -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Clickkearn</title>
+
+  <!-- Required Ad Script -->
+  <script type='text/javascript' src='//pl26609295.effectivegatecpm.com/75/ed/ee/75eeee0c2b4f1db614c4f1a9a3a23f95.js'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body data-page="about">
+  <div id="toast-container" aria-live="polite"></div>
+
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">CLICK<span>KEARN</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="wallet.html">Wallet</a>
+        <a href="settings.html">Settings</a>
+        <a href="about.html" style="color:var(--accent);">About</a>
+      </div>
+      <div id="guest-nav" style="display:flex;gap:0.6rem;">
+        <a href="index.html" class="btn btn-secondary">Sign In</a>
+      </div>
+      <div id="user-nav" style="display:none;align-items:center;gap:0.8rem;">
+        <span id="user-greeting"></span>
+        <span id="header-balance">$0.00</span>
+        <button class="btn btn-danger signout-btn">Sign Out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="section-title">The Platform</div>
+        <h1>About Clickkearn</h1>
+        <p>A modern click-to-earn demo built to showcase ad-monetized task reward systems.</p>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section">
+      <div style="max-width:720px;">
+        <div class="section-title">Mission</div>
+        <h2 style="margin-bottom:1rem;">Transparent earning, simply built</h2>
+        <p style="font-size:1.05rem;line-height:1.8;margin-bottom:1.5rem;">
+          Clickkearn demonstrates how a click-to-earn platform can be architected with clean, transparent logic — tracking ad interactions, crediting wallets, enforcing cooldowns, and managing withdrawals — all client-side for rapid prototyping.
+        </p>
+        <p style="line-height:1.8;">
+          This demo is intended as a technical foundation. Real deployments would layer secure backends, ad network verification, payment processors, and regulatory compliance on top of this client-side prototype.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section" style="border-top:1px solid var(--border);">
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-value">$1.62</span>
+          <span class="stat-label">Per Task</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">3</span>
+          <span class="stat-label">Clicks / Task</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">24h</span>
+          <span class="stat-label">Task Renewal</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">$110</span>
+          <span class="stat-label">Min Withdraw</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech stack -->
+    <section class="section" style="border-top:1px solid var(--border);">
+      <div class="section-title">Built With</div>
+      <h2 style="margin-bottom:1.5rem;">Technology Stack</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>HTML5</h3>
+          <p>Semantic markup, accessible forms, ARIA attributes throughout.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Tailwind CSS</h3>
+          <p>Utility-first CSS framework via CDN for rapid, consistent styling.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Vanilla JS</h3>
+          <p>Single main.js file — no frameworks, no build tools, just modern JS.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💾</div>
+          <h3>localStorage</h3>
+          <p>All state persisted client-side for demo purposes. Production requires a backend.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning banner -->
+    <section class="section">
+      <div style="padding:1.5rem;background:rgba(255,59,92,0.05);border:1px solid rgba(255,59,92,0.2);border-radius:var(--radius2);">
+        <h3 style="font-family:var(--font-head);font-size:0.8rem;letter-spacing:0.08em;color:var(--red);margin-bottom:0.7rem;">⚠️ Production Deployment Requirements</h3>
+        <p style="font-size:0.9rem;line-height:1.7;">
+          Any real-money deployment of a platform like this requires: server-side authentication, encrypted database storage, 
+          secure payment processing, KYC/AML compliance, ad network TOS compliance, server-side click fraud detection, 
+          and legal review. Client-side localStorage is for demonstration only.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html" style="color:var(--accent);">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Clickkearn. Demo platform — not a licensed financial product.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
